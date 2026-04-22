@@ -1,0 +1,24 @@
+@startuml
+
+start
+:Submit the claim;
+:Review the claim details;
+
+if (Is the claim valid?) then (Yes)
+  :Approve the claim;
+  :Calculate the payout;
+  
+  fork
+    :Send the payment to customer;
+  fork again
+    :Send the confirmation email;
+  end fork
+  
+else (No)
+  :Reject the claim;
+  :Notify the customer of the rejection;
+endif
+
+stop
+
+@enduml

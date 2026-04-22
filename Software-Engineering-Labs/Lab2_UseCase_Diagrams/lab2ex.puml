@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Customer" as customer
+actor "Bank System" as bank
+
+rectangle "ATM" {
+  usecase "Authenticate (Enter PIN)" as Auth
+  usecase "Invalid PIN Error" as BadPin
+  usecase "Withdraw Cash" as Withdraw
+  usecase "Insufficient Funds" as NoMoney
+  usecase "Deposit Cash" as Deposit
+
+  ' 
+  customer -- Withdraw
+  customer -- Deposit
+  Withdraw -- bank
+  Deposit -- bank
+  Auth -- bank
+  ' 
+  '  Include
+  Withdraw ..> Auth : <<include>>
+  Deposit ..> Auth : <<include>>
+  
+  '  Extend
+  BadPin .> Auth : <<extend>>
+  NoMoney .> Withdraw : <<extend>>
+}
+@enduml

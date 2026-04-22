@@ -1,0 +1,55 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Bank {
+  - bank_code: String
+  - address: String
+  - name: String
+  + manageAccount()
+}
+
+class ATM {
+  - ID_atm: String
+  - location: String
+  + authenticate()
+  + give_cash()
+  + createTransaction(amount: float): Transaction
+}
+
+class Customer {
+  - name: String
+  - card_number: String
+  - pin: String
+  - expire_date: int
+  + enterPIN()
+}
+
+class Account {
+  - account_number: String
+  - balance: float
+  + check_balance(): float
+  + to withdraw(amount: float): boolean
+  + to deposit(amount: float)
+}
+
+class Transaction {
+  - transactionID: String
+  - date: String
+  - amount: float
+  - transactionType: String
+}
+
+
+
+
+Bank "1" -- "*" ATM : manages >
+
+Bank "1" *-- "*" Account : contains >
+
+Customer "1" -- "1..*" Account : owns >
+
+Account "1" *-- "*" Transaction : has >
+
+ATM ..> Transaction : creates >
+
+@enduml

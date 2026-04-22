@@ -1,0 +1,17 @@
+@startuml
+
+[*] --> Requested : the patient books the appointment
+
+Requested --> Confirmed : the clinic approves
+Requested --> Canceled : the doctor unavailable
+
+Confirmed --> Canceled : the patient cancels
+Confirmed --> Waiting : the patien arrives and checks in
+
+Waiting --> Visiting: the doctor arrived
+Visiting --> Completed : the doctor finishes the visit
+
+Canceled --> [*]
+Completed --> [*]
+
+@enduml

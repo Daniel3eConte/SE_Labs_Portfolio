@@ -1,0 +1,57 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Insurance_Company {
+  - name: String
+  - VATnumber: String
+  + issuePolicy()
+  + processClaim()
+}
+
+class Customer {
+  - ID: String
+  - name: String
+  - address: String
+  + apply_for_insurance()
+}
+
+class Vehicle {
+  - plate_number: String
+  - model: String
+  - year: int
+}
+
+class Policy {
+  - policy_number: String
+  - startDate: Date
+  - endDate: Date
+  - premium_amount: float
+  + calculateRisk()
+  + renew()
+}
+
+class Claim {
+  - ID: String
+  - description: String
+  - status: String
+  + fileClaim()
+  + approve()
+}
+
+
+
+
+Insurance_Company "1" o-- "*" Customer : has >
+
+Customer "1" o-- "*" Vehicle : owns >
+
+(Customer, Insurance_Company) .. Policy
+
+Policy "1" -- "1" Vehicle : covers >
+
+Customer "1" -- "*" Claim : files >
+
+
+Insurance_Company ..> Vehicle : evaluates >
+
+@enduml

@@ -1,0 +1,58 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Person {
+ - name: String
+ - surname: String
+ - phone: integer
+ + contact_details()
+}
+
+class doctor  {
+- specialty: String
+- doctor_ID: String
++ write_prescription()
++ visit_patient() 
+}
+
+class patient {
+- patient_ID: String
+- insurance: String
++ pay()
+}
+
+class Medical_Record {
+ - recordID: String
+  - diagnosis: String
+  - prescription: String
+  + updateRecord(new_diagnosis: String, new_prescription: String)
+}
+
+class Appointment {
+- id: String
+  - date: date
+  - price: integer
++ schedule()
++ cancel()
+}
+
+class Clinic {
+- name: String
+- address: String
++ register_patient()
+}
+
+Person <|-- doctor
+Person <|-- patient
+
+Clinic "1" o-- "*" doctor: "employs" >
+patient "1" *-- "1..*" Medical_Record: "owns" >
+
+doctor "1" -- "*" Appointment : has >
+patient "1" -- "*" Appointment : attends >
+
+doctor ..> Medical_Record : reads/updates >
+
+
+
+@enduml

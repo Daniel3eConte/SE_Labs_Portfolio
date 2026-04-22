@@ -1,0 +1,44 @@
+@startuml
+skinparam maxMessageSize 150
+
+actor User
+participant ATM
+participant "Bank Server" as Bank
+User -> ATM : Insert Card
+ATM -> Bank : Verify Card
+
+alt if card is valid
+    Bank --> ATM : Card: OK
+    ATM --> User : Request PIN
+    User -> ATM : PIN Entered
+    ATM -> Bank : Verify PIN
+    
+    alt if PIN is valid
+        Bank --> ATM : PIN: OK
+        ATM --> User : Request Amount
+        User -> ATM : Amount Entered
+        ATM -> Bank : Start Transaction
+        ATM -> Bank : Sufficient Funds?
+        
+        alt if funds are sufficient
+            Bank --> ATM : Funds OK
+            ATM -> Bank : Withdraw Amount
+            Bank --> ATM : Withdraw Successful
+            ATM -> ATM : Dispense Cash
+            ATM --> User : Transaction Successful
+        else else
+            Bank --> ATM : Insufficient Funds
+            ATM --> User : Transaction Unsuccessful
+        end
+        
+    else else
+        Bank --> ATM : Invalid PIN 
+        ATM --> User : Eject Card
+    end
+    
+else else
+    Bank --> ATM : Invalid Card 
+    ATM --> User : Eject Card
+end
+
+@enduml
