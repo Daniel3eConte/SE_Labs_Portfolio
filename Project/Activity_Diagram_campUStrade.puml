@@ -1,0 +1,28 @@
+@startuml
+
+start
+:Buyer marks the activity as "Completed";
+:System processes the completion;
+
+if (Is transaction done?) then (Yes)
+  fork
+    :Generate transaction record;
+  fork again
+    :Update Seller's total credits;
+  fork again
+    :Update Buyer's total credits;
+  fork again
+    :Send email notification to the seller;
+  end fork
+  
+  :Prompt the buyer to leave a review;
+  :Save the review to the database;
+  
+else (No)
+  :Flag for qdmin to review what's wrong;
+  :Notify both users of the dispute;
+endif
+
+stop
+
+@enduml

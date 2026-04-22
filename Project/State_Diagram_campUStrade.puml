@@ -1,0 +1,14 @@
+@startuml
+
+[*] --> Active : Student publishes an activity
+
+Active --> In_progress : Buyer books the activity
+Active --> Canceled : Seller deletes the activity
+
+In_progress --> Completed : Service is delivered and verified
+In_progress --> Canceled : Dispute or mutual cancellation
+
+Completed --> [*]
+Canceled --> [*]
+
+@enduml

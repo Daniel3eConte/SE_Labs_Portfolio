@@ -1,0 +1,33 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Student" as student
+actor "University Email System" as email_sys
+
+rectangle "campUStrade" {
+
+  usecase "Receive Welcome Bonus Credits" as Bonus
+  usecase "Register Account" as Reg
+  usecase "Verify University Email" as Verify
+  usecase "Publish Service Listing" as Publish
+  usecase "Book a Service" as Book
+  usecase "Insufficient Credits Error" as NoCreds
+  usecase "Confirm Service Completion" as Confirm
+  usecase "Transfer Virtual Credits" as Transfer
+
+  
+  student -- Reg
+  student -- Publish
+  student -- Book
+  student -- Confirm
+
+  Verify -- email_sys
+
+  Reg ..> Verify : <<include>>
+  Verify ..> Bonus : <<include>>
+  Confirm ..> Transfer : <<include>>
+  
+  NoCreds .> Book : <<extend>>
+}
+@enduml

@@ -1,0 +1,54 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Student {
+  - studentID: String
+  - name: String
+  - email: String
+  - credits: int
+  + create_activity(title: String, price: int, description: String): Activity
+  + use_credit(amount: int): boolean
+  + receive_credits(amount: int)
+}
+
+class Category {
+  - cat_name: String
+  - description: String
+  + get_activities(): int
+}
+
+class Activity {
+  - activity_ID: String
+  - title: String
+  - description: String
+  - price: int
+  - status: String
+  + markAsCompleted()
+}
+
+class Transaction {
+  - transaction_ID: String
+  - date: String
+  - amount: int
+}
+
+class Review {
+  - reviewID: String
+  - rating: int
+  - comment: String
+  - date: String
+}
+
+Student "1" *-- "*" Activity : owns >
+
+Category "1" o-- "*" Activity : groups >
+
+Student "1" -- "*" Transaction : initiates >
+
+Transaction "1" -- "1" Activity : is for >
+
+Transaction "1" *-- "0..1" Review : generates >
+
+Student ..> Activity : creates >
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+skinparam maxMessageSize 150
+
+actor "Buyer (Student)" as Buyer
+participant "campUStrade System" as System
+participant "Activity" as Activity
+actor "Seller (Student)" as Seller
+
+Buyer -> System : request_purchase(activity_ID)
+System -> System : check_credits(Buyer)
+
+alt if buyer has enough credits
+    System -> Activity : update_status("In Progress")
+    System -> System : check_credits(Buyer, price)
+    System -> System : add_credits(Seller, price)
+    
+    System --> Buyer : purchase_confirmed
+    System -> Seller : notify_new_order(activityID)
+else else (insufficient credits)
+    System --> Buyer : error: Insufficient Credits
+end
+
+@enduml
