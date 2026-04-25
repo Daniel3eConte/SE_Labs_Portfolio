@@ -13,10 +13,8 @@ public class Student {
         this.credits = credits;
     }
 
-    public void createActivity(String activityName, int price, String description) {
-        System.out.println("Activity Created: " + activityName);
-        System.out.println("Price: " + price);
-        System.out.println("Description: " + description);
+    public Activity createActivity(String activityName, int price, String description) {
+        return new Activity(activityName, price, description);
     }
 
 }
