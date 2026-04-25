@@ -21,4 +21,8 @@ public class Category {
     public List<Activity> getActivities() {
         return activities;
     }
+    @Override
+    public String toString() {
+        return categoryName;
+    }
 }
