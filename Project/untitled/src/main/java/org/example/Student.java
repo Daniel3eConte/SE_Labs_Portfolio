@@ -13,6 +13,7 @@ public class Student {
         this.name = name;
         this.email = email;
         this.credits = credits;
+        this.activities = new ArrayList<>();
     }
 
     public Activity createActivity(String activityName, int price, String description) {
