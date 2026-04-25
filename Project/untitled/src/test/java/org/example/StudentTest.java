@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 class StudentTest {
 
     @Test
@@ -22,14 +24,16 @@ class StudentTest {
     }
 
     @Test
-    void createdActivityIsSavedInStudentActivities() {  //test for ping pong made by daniele
+    void createdActivityIsSavedInsideStudentActivities() {
+        Student student = new Student("S001", "Anna", "anna@edu.p.lodz.pl", 10);
+
         Activity activity = student.createActivity(
                 "Java tutoring",
                 5,
-                "I can help with Java basics",
-                tutoringCategory
+                "I can help with Java basics"
         );
 
+        assertEquals(1, student.getActivities().size());
         assertTrue(student.getActivities().contains(activity));
     }
 }
