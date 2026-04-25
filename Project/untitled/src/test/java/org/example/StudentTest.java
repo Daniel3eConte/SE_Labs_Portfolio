@@ -1,4 +1,3 @@
-// src/test/java/org/example/StudentTest.java
 package org.example;
 
 import org.junit.jupiter.api.Test;
