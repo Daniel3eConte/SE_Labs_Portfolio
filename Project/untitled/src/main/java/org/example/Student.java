@@ -14,13 +14,14 @@ public class Student {
         this.email = email;
         this.credits = credits;
         this.activities = new ArrayList<>();
+
     }
 
-    public Activity createActivity(String activityName, int price, String description) {
-        Activity activity = new Activity(activityName, price, description);
+    public Activity createActivity(String activityName, int price, String description, Category category) {
+        Activity activity = new Activity(activityName, price, description, category);
         activities.add(activity);
-
-        return activity;    }
+        return activity;
+    }
     public List<Activity> getActivities() {
         return activities;
     }
