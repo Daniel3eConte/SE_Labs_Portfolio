@@ -19,6 +19,7 @@ public class Student {
     public Activity createActivity(String activityName, int price, String description) {
         Activity activity = new Activity(activityName, price, description);
         activities.add(activity);
+
         return activity;    }
     public List<Activity> getActivities() {
         return activities;
