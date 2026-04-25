@@ -20,4 +20,16 @@ class StudentTest {
         assertEquals(5, activity.getPrice());
         assertEquals("I can help with Java basics", activity.getDescription());
     }
+
+    @Test
+    void createdActivityIsSavedInStudentActivities() {  //test for ping pong made by daniele
+        Activity activity = student.createActivity(
+                "Java tutoring",
+                5,
+                "I can help with Java basics",
+                tutoringCategory
+        );
+
+        assertTrue(student.getActivities().contains(activity));
+    }
 }

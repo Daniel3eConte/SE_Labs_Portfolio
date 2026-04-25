@@ -1,6 +1,6 @@
 package org.example;
 
-public class  Activity {
+public class  Activity {//made activity class to pass the first test
     private String activityName;
     private int price;
     private String description;
