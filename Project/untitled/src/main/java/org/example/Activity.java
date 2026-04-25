@@ -1,6 +1,6 @@
 package org.example;
 
-public class Activity {
+public class  Activity {
     private String activityName;
     private int price;
     private String description;
