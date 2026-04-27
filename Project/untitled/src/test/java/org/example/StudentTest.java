@@ -9,7 +9,7 @@ class StudentTest {
 
     @Test
     void studentCanCreateActivityWithCategory() {
-        Student student = new Student("S001", "Anna", "anna@edu.p.lodz.pl", 10);
+        Student student = new Student("S001", "Anna", "anna@edu.p.lodz.pl", "mago", 10);
         Category category = new Category("Tutoring");
 
         Activity activity = student.createActivity(
@@ -27,7 +27,7 @@ class StudentTest {
 
     @Test
     void createdActivityIsSavedInsideStudentActivities() {
-        Student student = new Student("S001", "Anna", "anna@edu.p.lodz.pl", 10);
+        Student student = new Student("S001", "Anna", "anna@edu.p.lodz.pl", "mago", 10);
         Category category = new Category("Tutoring");
 
         Activity activity = student.createActivity(
@@ -42,7 +42,7 @@ class StudentTest {
     }
     @Test
     void createdActivityIsAddedToCategory() {
-        Student student = new Student("S001", "Anna", "anna@edu.p.lodz.pl", 10);
+        Student student = new Student("S001", "Anna", "anna@edu.p.lodz.pl", "mago", 10);
         Category category = new Category("Tutoring");
 
         Activity activity = student.createActivity(

@@ -6,13 +6,15 @@ public class Student {
     private String studentID;
     private String name;
     private String email;
+    private String password; // adding a password field
     private int credits;
     private List<Activity> activities;
 
-    public Student(String studentID, String name, String email, int credits) {
+    public Student(String studentID, String name, String email, String password, int credits) {
         this.studentID = studentID;
         this.name = name;
         this.email = email;
+        this.password = password;
         this.credits = credits;
         this.activities = new ArrayList<>();
     }
