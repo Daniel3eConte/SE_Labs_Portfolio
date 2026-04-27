@@ -5,25 +5,38 @@ class Student {
   - studentID: String
   - name: String
   - email: String
+  - password: String
   - credits: int
-  + create_activity(title: String, price: int, description: String): Activity
-  + use_credit(amount: int): boolean
-  + receive_credits(amount: int)
+  - activities: List<Activity>
+  + Student(studentID: String, name: String, email: String, password: String, credits: int)
+  + checkPassword(pwd: String): boolean
+  + createActivity(activityName: String, price: int, description: String, category: Category): Activity
+  + getActivities(): List<Activity>
+  + getStudentID(): String
+  + getName(): String
+  + getEmail(): String
+  + getCredits(): int
 }
 
 class Category {
-  - cat_name: String
-  - description: String
-  + get_activities(): int
+  - categoryName: String
+  - activities: List<Activity>
+  + Category(categoryName: String)
+  + getCategoryName(): String
+  + addActivity(activity: Activity): void
+  + getActivities(): List<Activity>
 }
 
 class Activity {
-  - activity_ID: String
-  - title: String
-  - description: String
+  - activityName: String
   - price: int
-  - status: String
-  + markAsCompleted()
+  - description: String
+  - category: Category
+  + Activity(activityName: String, price: int, description: String, category: Category)
+  + getActivityName(): String
+  + getPrice(): int
+  + getDescription(): String
+  + getCategory(): Category
 }
 
 class Transaction {
@@ -40,15 +53,10 @@ class Review {
 }
 
 Student "1" *-- "*" Activity : owns >
-
 Category "1" o-- "*" Activity : groups >
-
 Student "1" -- "*" Transaction : initiates >
-
 Transaction "1" -- "1" Activity : is for >
-
 Transaction "1" *-- "0..1" Review : generates >
-
 Student ..> Activity : creates >
 
 @enduml

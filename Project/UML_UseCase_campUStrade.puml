@@ -2,32 +2,42 @@
 left to right direction
 skinparam packageStyle rectangle
 
-actor "Student" as student
-actor "University Email System" as email_sys
+actor "Student (Seller)" as Seller
+actor "Student (Buyer)" as Buyer
+actor "System Admin" as Admin
 
-rectangle "campUStrade" {
-
-  usecase "Receive Welcome Bonus Credits" as Bonus
-  usecase "Register Account" as Reg
-  usecase "Verify University Email" as Verify
-  usecase "Publish Service Listing" as Publish
-  usecase "Book a Service" as Book
-  usecase "Insufficient Credits Error" as NoCreds
-  usecase "Confirm Service Completion" as Confirm
-  usecase "Transfer Virtual Credits" as Transfer
-
-  
-  student -- Reg
-  student -- Publish
-  student -- Book
-  student -- Confirm
-
-  Verify -- email_sys
-
-  Reg ..> Verify : <<include>>
-  Verify ..> Bonus : <<include>>
-  Confirm ..> Transfer : <<include>>
-  
-  NoCreds .> Book : <<extend>>
+package "campUStrade System" {
+  usecase "Log In / Authenticate" as UC0
+  usecase "Create Activity" as UC1
+  usecase "Manage Categories" as UC2
+  usecase "Purchase Activity" as UC3
+  usecase "Leave a Review" as UC4
+  usecase "View Transaction History" as UC5
+  usecase "Assign to Category" as UC_Assign
+  usecase "Process Payment" as UC_Payment
 }
+
+' Relazioni per il Venditore
+Seller --> UC0
+Seller --> UC1
+Seller --> UC5
+
+' Relazioni per il Compratore
+Buyer --> UC0
+Buyer --> UC3
+Buyer --> UC4
+Buyer --> UC5
+
+' Relazioni per l'Admin
+ UC2<--  Admin
+ UC5<--  Admin
+
+' Inclusioni (Logiche di sistema automatiche)
+UC1 ..> UC_Assign : <<include>>
+UC3 ..> UC_Payment : <<include>>
+
+' L'autenticazione è un pre-requisito per creare o comprare
+UC1 ..> UC0 : <<include>>
+UC3 ..> UC0 : <<include>>
+
 @enduml
