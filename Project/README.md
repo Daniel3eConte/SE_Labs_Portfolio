@@ -1,65 +1,36 @@
-campUStrade 🎓🔄
-campUStrade è una piattaforma di economia circolare e scambio di servizi progettata per gli studenti universitari. Il sistema permette agli utenti di scambiare competenze, favori e piccoli servizi (come ripetizioni o passaggi in auto) utilizzando un sistema di crediti virtuali interno, eliminando la necessità di transazioni monetarie reali all'interno del campus.
+# campUStrade - Development Repository 
 
-🚀 Funzionalità Principali
-Sistema di Autenticazione: Accesso sicuro tramite credenziali universitarie (email e password).
+This repository contains the initial prototype of **campUStrade**, a circular economy platform for university students to exchange services. The project is currently a **work-in-progress**, developed strictly following the **Test-Driven Development (TDD)** methodology.
 
-Gestione Profili: Ogni studente ha un portafoglio di crediti virtuali e uno storico delle attività create.
+##  Project Status
+The software currently focuses on core business logic: user authentication and the creation of activities. It is not a finished product but a robust engine where every implemented feature is guaranteed by a comprehensive suite of unit tests.
 
-Creazione Annunci: Gli utenti possono pubblicare servizi offrendo una descrizione, un prezzo in crediti e una categoria di appartenenza.
+##  Methodology: Ping-Pong TDD
+We adopted the **Ping-Pong Pair Programming** approach as per the Lab requirements:
+1. **Student A (RED):** Writes a failing test in `StudentTest.java`.
+2. **Student B (GREEN):** Writes the minimal code in the main classes to make the test pass.
+3. **Student B (REFACTOR):** Cleans the code, then writes the next failing test.
+4. **Student A (GREEN):** Makes it pass, and the cycle continues.
 
-Categorizzazione: Navigazione semplificata tra le diverse tipologie di servizi (es. Studio, Trasporti, Supporto Tecnico).
+### Features Verified by Tests:
+According to our `StudentTest` suite, the system currently handles:
+- **Secure Authentication:** The `checkPassword` method correctly validates credentials, handling edge cases like wrong passwords, empty strings, and **Case Sensitivity**.
+- **Activity Creation:** A student can generate an `Activity` by providing a name, price, description, and an existing `Category`.
+- **Data Integrity:** When an activity is created, the system automatically synchronizes lists, ensuring the activity is stored in both the `Student`'s personal list and the `Category`'s global list.
 
-🛠️ Tecnologie Utilizzate
-Linguaggio: Java 17+
+##  Current Architecture
+The project structure is organized to support automated testing:
+- **Logic (`src/main/java/org/example/`):**
+    - `Student`: Handles credit balance, profile data, and acts as a factory for activities.
+    - `Activity`: Data holder for the service being offered.
+    - `Category`: Logical aggregator for different types of activities.
+- **Tests (`src/test/java/org/example/`):**
+    - `StudentTest`: The source of truth for the system's behavior using **JUnit 5**.
 
-Paradigma: Object-Oriented Programming (OOP)
 
-Metodologia di Sviluppo: Test-Driven Development (TDD) tramite JUnit.
+##  Developers
+- **Daniele Conte**
+- **Kalliopi Kydonaki**
 
-IDE consigliato: IntelliJ IDEA
-
-Modellazione: UML 2.0 (Class, Sequence, State, Activity e Use Case diagrams).
-
-🏗️ Architettura del Software (Design)
-Il progetto segue i principi dell'Ingegneria del Software per garantire manutenibilità e scalabilità:
-
-Incapsulamento: Tutte le classi (Student, Activity, Category) utilizzano modificatori di accesso privati per proteggere l'integrità dei dati.
-
-Associazioni Complesse: Gestione di relazioni 1:N tra Studenti/Categorie e Attività tramite l'uso di ArrayList.
-
-Business Logic Decentralizzata: La logica di creazione degli oggetti è gestita internamente alle classi per ridurre l'accoppiamento (es. Student.createActivity()).
-
-🧪 Test-Driven Development (TDD)
-Per questo progetto è stata adottata la tecnica del Ping-Pong Pair Programming. Il ciclo di sviluppo segue rigorosamente il pattern:
-
-🔴 RED: Scrittura di un test unitario fallimentare.
-
-🟢 GREEN: Implementazione del codice minimo necessario per far passare il test.
-
-🔵 REFACTOR: Ottimizzazione del codice mantenendo intatta la funzionalità.
-
-📦 Struttura del Progetto
-Plaintext
-src/
- └── main/java/org/example/
-      ├── Student.java    # Gestione utente, crediti e creazione servizi
-      ├── Activity.java   # Rappresentazione del servizio/annuncio
-      └── Category.java   # Organizzazione logica delle attività
-💻 Esempio di Utilizzo (Snippet)
-Java
-// Creazione di uno studente e una categoria
-Student mario = new Student("S123", "Mario Rossi", "mario@edu.pl", "securePass123", 100);
-Category tutoring = new Category("Ripetizioni");
-
-// Lo studente crea un'attività
-mario.createActivity("Ripetizioni Java", 20, "Lezioni base di OOP", tutoring);
-
-// Verifica dei crediti
-System.out.println(mario.getCredits()); // Output: 100
-👥 Autori
-[Tuo Nome]
-
-[Nome del tuo Collega]
-
-Progetto realizzato per il corso di Ingegneria del Software - Łódź University of Technology (IFE).
+---
+*Developed for the Software Engineering Lab - Lodz University of Technology (IFE).*
