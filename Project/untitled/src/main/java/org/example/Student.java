@@ -33,4 +33,11 @@ public class Student {
     public List<Activity> getActivities() {
         return activities;
     }
+
+    // Getter
+    public String getStudentID() { return studentID; }
+    public String getName()      { return name; }
+    public String getEmail()     { return email; }
+    public int    getCredits()   { return credits; }
+
 }
