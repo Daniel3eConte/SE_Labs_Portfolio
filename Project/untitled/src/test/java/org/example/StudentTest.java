@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class StudentTest {
 
@@ -54,5 +55,29 @@ class StudentTest {
 
         assertEquals(1, category.getActivities().size());
         assertTrue(category.getActivities().contains(activity));
+    }
+
+    @Test
+    public void testCheckPasswordCorrect() {
+        Student student = new Student("12345678", "Mario Rossi", "mario@univ.it", "secret123", 180);
+        assertTrue(student.checkPassword("secret123"));
+    }
+
+    @Test
+    public void testCheckPasswordWrong() {
+        Student student = new Student("12345678", "Mario Rossi", "mario@univ.it", "secret123", 180);
+        assertFalse(student.checkPassword("parola_sbagliata"));
+    }
+
+    @Test
+    public void testCheckPasswordEmpty() {
+        Student student = new Student("12345678", "Mario Rossi", "mario@univ.it", "secret123", 180);
+        assertFalse(student.checkPassword(""));
+    }
+
+    @Test
+    public void testCheckPasswordCaseSensitive() {
+        Student student = new Student("12345678", "Mario Rossi", "mario@univ.it", "Secret123", 180);
+        assertFalse(student.checkPassword("secret123"));
     }
 }

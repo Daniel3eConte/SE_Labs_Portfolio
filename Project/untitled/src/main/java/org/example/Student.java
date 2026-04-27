@@ -18,6 +18,10 @@ public class Student {
         this.credits = credits;
         this.activities = new ArrayList<>();
     }
+    public boolean checkPassword(String pwd) {
+        return this.password.equals(pwd);
+    }
+
 
     public Activity createActivity(String activityName, int price, String description, Category category) {
         Activity activity = new Activity(activityName, price, description, category);
