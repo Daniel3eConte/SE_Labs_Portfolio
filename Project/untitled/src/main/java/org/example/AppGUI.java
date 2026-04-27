@@ -17,7 +17,7 @@ public class AppGUI extends JFrame {
     private DefaultListModel<Category> categoryModel = new DefaultListModel<>();
 
     public AppGUI() {
-        setTitle("Activity Manager");
+        setTitle("campUStrade");
         setSize(700, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
