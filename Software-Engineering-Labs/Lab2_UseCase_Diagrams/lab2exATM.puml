@@ -1,0 +1,28 @@
+@startuml
+skinparam packageStyle rectangle
+
+actor "Cliente" as Customer << Primary >>
+actor "Server Banca" as BankServer << Secondary >>
+
+rectangle "ATM System" {
+    usecase "Autentica Utente" as UC_Auth
+    usecase "Controlla Saldo" as UC_Balance
+    usecase "Preleva Contanti" as UC_Withdraw
+    usecase "Stampa Ricevuta" as UC_Receipt
+    usecase "Segnala Errore Fondi" as UC_Error
+
+    ' Relationships
+    Customer -- UC_Balance
+    Customer -- UC_Withdraw
+
+    UC_Balance ..> UC_Auth : <<include>>
+    UC_Withdraw ..> UC_Auth : <<include>>
+    
+    UC_Receipt <.. UC_Withdraw : <<extend>>
+    UC_Error <.. UC_Withdraw : <<extend>>
+
+    UC_Auth -- BankServer
+    UC_Balance -- BankServer
+}
+
+@enduml
