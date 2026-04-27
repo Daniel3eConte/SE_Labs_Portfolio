@@ -1,54 +1,17 @@
-# Software Design & UML Modeling: Lab Exercises
+# Exercise 3: Structural Modeling - Class Diagrams
 
 ## Project Overview
-This repository contains the structural modeling and behavioral analysis for three different software systems: an **ATM**, a **Medical Clinic**, and a **Car Insurance** system. The project focuses on translating business requirements into formal UML representations, specifically **Use Case Diagrams** and **Class Diagrams**.
+In this exercise, I developed the static structure for three different software domains: an **ATM**, a **Medical Clinic**, and a **Car Insurance** system. The focus is on defining classes, attributes, methods, and their relationships.
 
----
+## Modeled Systems
+1. **ATM System**: Focuses on the relationship between the `Bank`, `ATM` hardware, `Account`, and `Transaction` history.
+2. **Medical Clinic**: Utilizes an abstract `Person` class to manage inheritance for `doctor` and `patient`. It covers `Appointments` and `Medical_Records` management.
+3. **Car Insurance**: Models the interaction between the `Insurance_Company`, `Customer`, and `Vehicle` through a `Policy` association class, including `Claim` management.
 
-## 1. Automated Teller Machine (ATM) System
-This system handles secure banking transactions.
+## UML Concepts Applied
+- **Generalization**: Used in the Clinic system (Doctor/Patient inheriting from Person).
+- **Composition & Aggregation**: Used to define object life-cycles (e.g., an Account "contains" Transactions).
+- **Associations**: Defining how different entities interact (e.g., a Customer "owns" a Vehicle).
 
-### Functional Analysis (Use Case)
-* **Primary Actor**: Customer [cite: 1].
-* **Secondary Actor**: Bank Server (handles backend verification) [cite: 1].
-* **Key Use Cases**: 
-    - **Authenticate User**: A mandatory prerequisite (<<include>>) for all financial operations [cite: 1, 2].
-    - **Withdraw Cash**: The main transactional flow [cite: 2].
-    - **Check Balance**: Allows users to view account status [cite: 2].
-* **Advanced Logic**: "Print Receipt" and "Signal Insufficient Funds" are modeled as **extensions** (<<extend>>) as they occur only under specific conditions [cite: 2].
-
-### Structural Analysis (Class Diagram)
-* **Entities**: `Bank`, `ATM`, `Customer`, `Account`, and `Transaction` [cite: 1, 2].
-* **Key Relations**:
-    - A `Bank` manages multiple `ATM` units and contains multiple `Accounts` [cite: 2].
-    - An `Account` owns a history of `Transactions` [cite: 2].
-    - The `ATM` is responsible for creating `Transaction` objects [cite: 2].
-
----
-
-## 2. Medical Clinic System
-A management system for healthcare providers and patient records.
-
-### Structural Analysis (Class Diagram)
-* **Hierarchies**: Uses an abstract `Person` class to define common traits for both `doctor` and `patient` [cite: 3].
-* **Key Entities**: `Clinic`, `Appointment`, and `Medical_Record` [cite: 3, 4].
-* **Logic**:
-    - The `Clinic` employs multiple doctors [cite: 3].
-    - A `patient` owns one or more `Medical_Records` [cite: 3].
-    - `Appointments` serve as the link between doctors and patients [cite: 3, 4].
-    - Doctors have the authority to read or update `Medical_Records` [cite: 4].
-
----
-
-## 3. Car Insurance System
-A system designed to manage policies and claims.
-
-### Structural Analysis (Class Diagram)
-* **Entities**: `Insurance_Company`, `Customer`, `Vehicle`, `Policy`, and `Claim` [cite: 5, 6].
-* **Business Logic**:
-    - A `Policy` acts as a linking entity between the `Customer` and the `Insurance_Company` [cite: 6].
-    - Each `Policy` covers a specific `Vehicle` [cite: 6].
-    - Customers can file multiple `Claims` [cite: 6].
-    - The `Insurance_Company` evaluates the `Vehicle` to determine risk and policy terms [cite: 6].
-
----
+## How to View
+Each `.puml` file (ATM, Clinic, Insurance) contains the source code. Use a PlantUML viewer or [PlantText.com](https://www.planttext.com) to visualize the architecture.
