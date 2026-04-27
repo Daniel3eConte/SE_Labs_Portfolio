@@ -28,4 +28,9 @@ public class  Activity {//made activity class to pass the first test
     public Category getCategory() {
         return category;
     }
+
+    @Override
+    public String toString() {
+        return activityName + " (" + price + ")";
+    }
 }
